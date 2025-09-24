@@ -1,99 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Realistic 3D Solar System Simulation</title>
-    <meta name="author" content="EthanBukenya" />
-    <meta name="robots" content="index, follow" />
-    <meta
-      name="description"
-      content="Welcome to the 'realistic-3d-solar-system' project! This project provides an interactive 3D simulation of the solar system with options for both realistic and less accurate representations. Users can explore and learn more about each celestial body in the solar system. This is the 2nd version of my old project 'solar-system3D,' which was very inaccurate. This is an updated version with many new features and functions."
-    />
-    <meta
-      name="keywords"
-      content="three.js, solar system, 3D, space, planets, astronomy, stars, sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto"
-    />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistic 3D Solar System</title>
 
-    <meta property="og:title" content="Realistic 3D Solar System Simulation" />
-    <meta
-      property="og:description"
-      content="Welcome to the 'realistic-3d-solar-system' project! This project provides an interactive 3D simulation of the solar system with options for both realistic and less accurate representations. Users can explore and learn more about each celestial body in the solar system. This is the 2nd version of my old project 'solar-system3D,' which was very inaccurate. This is an updated version with many new features and functions."
-    />
-
-    <meta property="og:type" content="website" />
-    <!-------------------------->
-    <!-- Sitemap -->
-    <!-------------------------->
-
-    <!----------------------------------------------------------------------------->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-
-
-    <!--Google verification--->
-
-    <!----------------------------------------------------------------------------->
     <link rel="icon" type="image/png" href="./image/solar-system.png" />
     <script type="text/javascript" src="./min.js/dat.gui.min.js"></script>
     <link rel="stylesheet" href="style/style.css" />
-  </head>
-  <body>
-    <div class="change-scene">
-      <span>Realistic dimention</span>
-      <div class="change-scene-select selected"></div>
-    </div>
-    <div class="show-info-container" show="true">
-      <div class="hide-info">Hide info</div>
-      <div class="show-info">Show info</div>
 
-      <div class="info-value description"></div>
-      <div class="mul-info-key-value">
-        <div class="key-value-pair">
-          <div class="info-key">Radius</div>
-          :
-          <div class="info-value radius"></div>
+</head>
+<body>
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <h2>🌌 Loading Solar System 🌌</h2>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p>Preparing planets and stars...</p>
         </div>
-        <div class="key-value-pair">
-          <div class="info-key">Distance from sun</div>
-          :
-          <div class="info-value distanceFromSun"></div>
-        </div>
-        <div class="key-value-pair">
-          <div class="info-key">Mass</div>
-          :
-          <div class="info-value mass"></div>
-        </div>
-        <div class="key-value-pair">
-          <div class="info-key">Day length</div>
-          :
-          <div class="info-value dayLength"></div>
-        </div>
-        <div class="key-value-pair">
-          <div class="info-key">Year length</div>
-          :
-          <div class="info-value yearLength"></div>
-        </div>
-        <div class="key-value-pair">
-          <div class="info-key">Temperature</div>
-          :
-          <div class="info-value temperatureRange"></div>
-        </div>
-        <div class="key-value-pair">
-          <div class="info-key">No. of missions</div>
-          :
-          <div class="info-value missions"></div>
-        </div>
-      </div>
-    </div>
-    <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; color: white; display: flex; justify-content: center; align-items: center; z-index: 1000;">
-     Loading Solar System...
     </div>
 
-    <script>
-    window.addEventListener('load', function() {
-        document.getElementById('loading').style.display = 'none';
-    });
-    </script>
+    <div id="canvas-container"></div>
+
+    <div class="controls">
+        <h3>🎮 Controls</h3>
+        <div class="control-group">
+            <label>Animation Speed:</label>
+            <input type="range" id="speed" min="0" max="5" step="0.1" value="1">
+        </div>
+        <div class="control-group">
+            <label>Focus Planet:</label>
+            <select id="focus-planet">
+                <option value="none">Free Camera</option>
+                <option value="sun">Sun</option>
+                <option value="mercury">Mercury</option>
+                <option value="venus">Venus</option>
+                <option value="earth">Earth</option>
+                <option value="mars">Mars</option>
+                <option value="jupiter">Jupiter</option>
+                <option value="saturn">Saturn</option>
+                <option value="uranus">Uranus</option>
+                <option value="neptune">Neptune</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <button class="toggle-btn" id="toggle-orbits">Toggle Orbits</button>
+            <button class="toggle-btn" id="toggle-labels">Toggle Labels</button>
+        </div>
+    </div>
+
+    <div class="planet-info" id="planet-info">
+        <h3 id="planet-name">Click a planet to learn more</h3>
+        <div id="planet-details"></div>
+    </div>
+
+    <div class="instructions">
+        <strong>🖱️ Controls:</strong><br>
+        • Left click + drag: Rotate view<br>
+        • Right click + drag: Pan<br>
+        • Scroll: Zoom in/out<br>
+        • Click planets for info
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="./js/script.js" type="module"></script>
-  </body>
-</html>
+    <script src="./js/constant.js" type="module"></script>
+</body>
+</html>    
