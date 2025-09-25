@@ -4,6 +4,10 @@ A realistic, interactive 3D solar system simulation built with Three.js, featuri
 
 ## Features
 
+## Screenshots
+
+![Usage video](textures/3D-solar-system-gif.gif)
+
 ### Core Functionality
 - **Complete Solar System**: All 9 celestial bodies including Mercury through Neptune plus Pluto
 - **Realistic Orbital Mechanics**: Planets orbit at scaled distances with accurate relative speeds
